@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', phones.views.show_catalog, name='catalog'),
     path('catalog/<slug:slug>/', phones.views.show_product, name='slugslug'),
-    path('catalog?sort=name',phones.views.sort_name, name='sort_name'),
-    path('catalog?sort=min_price',phones.views.sort_price_min, name='sort_min'),
-    path('catalog?sort=max_price',phones.views.sort_price_max, name='sort_max')
+    path('catalog?sort=name', phones.views.sort_name, name='sort_name'),
+    path('catalog?sort=min_price', phones.views.sort_price_min, name='sort_min'),
+    path('catalog?sort=max_price', phones.views.sort_price_max, name='sort_max'),
+    path('api/v1/phones/', phones.views.CreatePhoneView.as_view(), name='create-phone'),
 ]

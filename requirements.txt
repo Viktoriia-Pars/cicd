@@ -1,2 +1,6 @@
 Django==3.1.2
 psycopg2-binary==2.8.6
+django-filter
+Pillow
+flake8
+djangorestframework

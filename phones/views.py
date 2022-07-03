@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .models import *
+from rest_framework.generics import CreateAPIView
+
+from .serializers import PhoneSerializer
 
 
 def show_catalog(request):
@@ -27,4 +30,8 @@ def sort_name(request):
     template = 'catalog.html'
     context = {'phones': Phone.objects.order_by('name')}
     return render(request, template, context)
+
+class CreatePhoneView(CreateAPIView):
+    queryset = Phone.objects.all()
+    serializer_class = PhoneSerializer
 
