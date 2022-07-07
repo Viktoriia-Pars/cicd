@@ -15,15 +15,37 @@
       - name: Install Python
         uses: actions/setup-python@v2
         with:
-        python-version: 3.9
+          python-version: 3.9
 
       - name: Install requirements
-        run:
+        run: |
           python3 -m pip install pip --upgrade
           pip install -r requirements.txt
 
-      - name: Linting
-        run: flake8 .
+      - name: Install postgres
+        uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: '12'
+
+      - name: Create User
+        run: psql -c "CREATE USER admin WITH PASSWORD '1';"
+
+      - name: Create DB
+        run: psql -c "CREATE DATABASE test;"
+
+
+
+      - name: Run migrations
+        run: python manage.py migrate
+
+#      - name: Linting
+#        run: flake8 .
 
       - name: Testing
-        run: python3 manage.py test
+        run: python manage.py test
+        env:
+          DB_NAME: test
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_user: admin
+          DB_password: 1
