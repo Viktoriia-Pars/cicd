@@ -4,25 +4,26 @@
       push:
         branches:
           - main
+
   jobs:
     tests:
       runs-on: ubuntu-latest
       steps:
-        - name: Prepare system
-          uses: actions/checkout@v3
+      - name: Prepare system
+        uses: actions/checkout@v3
 
-        -name: Install Python
-         uses: actions/setup-python@v2
-         with
-          python-version: 3.9
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+        python-version: 3.9
 
-        -name: Install requirements
-         run:
-            python3 -m pip install pip --upgrade
-            pip install -r requirements.txt
+      - name: Install requirements
+        run:
+          python3 -m pip install pip --upgrade
+          pip install -r requirements.txt
 
-        -name: Linting
-         run: flake8 .
+      - name: Linting
+        run: flake8 .
 
-        -name: Testing
-         run: python3 manage.py test
+      - name: Testing
+        run: python3 manage.py test
