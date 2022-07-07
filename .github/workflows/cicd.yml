@@ -81,12 +81,12 @@
           run: |
             export DATABASE_URL=postgres://${{ matrix.database-user }}:${{ matrix.database-password }}@${{ matrix.database-host }}:${{ matrix.database-port }}/${{ matrix.database-name }}
             export SECRET_KEY=test-secret-key
-            export DEBUG=1
+            export DEBUG=True
         - name: Run migrations
           run: |
             export DATABASE_URL=postgres://${{ matrix.database-user }}:${{ matrix.database-password }}@${{ matrix.database-host }}:${{ matrix.database-port }}/${{ matrix.database-name }}
             export SECRET_KEY=test-secret-key
-            export DEBUG=1
+            export DEBUG=True
             export ALLOWED_HOSTS=localhost
             export GITHUB_WORKFLOW=True
             export MODE=workflow
@@ -100,7 +100,7 @@
           env:
             DATABASE_URL: postgres://${{ matrix.database-user }}:${{ matrix.database-password }}@${{ matrix.database-host }}:${{ matrix.database-port }}/${{ matrix.database-name }}
             SECRET_KEY: test-secret-key
-            DEBUG: 1
+            DEBUG: True
             ALLOWED_HOSTS: localhost
             GITHUB_WORKFLOW: True
             MODE: workflow
